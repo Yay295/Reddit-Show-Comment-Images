@@ -4,7 +4,7 @@
 // @namespace     https://github.com/Yay295/Reddit-Show-Comment-Images
 // @author        Yay295
 // @match         *://*.reddit.com/*
-// @version       1.0.0
+// @version       1.0.1
 // ==/UserScript==
 
 'use strict';
@@ -13,6 +13,7 @@ function processCommentImageLinks(img_links) {
 	for (let img_link of img_links) {
 		if (/^https:\/\/preview\.redd\.it\/[^\.]+\.[a-z]+/.test(img_link.href)) {
 			let img = document.createElement('img');
+			img.loading = 'lazy';
 			img.style.minWidth = '20px';
 			img.style.maxWidth = '240px';
 			img.style.minHeight = '20px';
