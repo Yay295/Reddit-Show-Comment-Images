@@ -4,7 +4,7 @@
 // @namespace     https://github.com/Yay295/Reddit-Show-Comment-Images
 // @author        Yay295
 // @match         *://*.reddit.com/*
-// @version       1.0.3
+// @version       1.0.4
 // ==/UserScript==
 
 'use strict';
@@ -37,11 +37,8 @@ function processMutations(mutations) {
 	processCommentImageLinks(added_image_links);
 }
 
-let comment_area = document.querySelector('.commentarea');
-if (comment_area !== null) {
-	// Process comment image links that are already on the page.
-	processCommentImageLinks(comment_area.querySelectorAll('.comment a[href]'));
+// Process comment image links that are already on the page.
+processCommentImageLinks(document.querySelectorAll('.comment a[href]'));
 
-	// The MutationObserver will be triggered when more comments are loaded.
-	new MutationObserver(processMutations).observe(comment_area,{subtree:true,childList:true});
-}
+// The MutationObserver will be triggered when more comments are loaded.
+new MutationObserver(processMutations).observe(document.body,{subtree:true,childList:true});
